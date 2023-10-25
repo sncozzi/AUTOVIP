@@ -19,13 +19,11 @@ a {
   text-decoration: none;
   color: white;
 }
-  
-  #carousel {
-    max-height: 36vw;
-    height: 600px;
-  }
 
-
+#carousel {
+  max-height: 36vw;
+  height: 600px;
+}
 
 #carousel {
   max-height: 36vw;
@@ -35,9 +33,20 @@ a {
 .navbar2 {
   border-bottom: 4px solid orange;
 }
+.carousel-img {
+  height: 36vw;
+  object-fit: cover;
+} 
 #footer {
   border-top: 4px solid orange;
 }
+
+#imgAboutUs {
+  width: 30rem;
+  
+}
+
+
 /*****************************************************************
   
       HEADER
