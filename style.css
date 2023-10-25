@@ -15,19 +15,12 @@ body {
   h6 {
     font-family: "Lato", sans-serif;
   }
-<<<<<<< Updated upstream
 
 a {
   text-decoration: none;
   color: white;
 }
   
-=======
-  #carousel {
-    max-height: 36vw;
-    height: 600px;
-  }
->>>>>>> Stashed changes
   /*****************************************************************
   
       HEADER
