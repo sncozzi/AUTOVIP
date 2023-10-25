@@ -16,8 +16,9 @@ body {
     font-family: "Lato", sans-serif;
   }
 
-#footer-logo {
-  width: 8rem;
+a {
+  text-decoration: none;
+  color: white;
 }
   
   /*****************************************************************

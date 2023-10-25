@@ -44,36 +44,50 @@
   </head>
 
   <body>
-    <div class="bg-dark"> <!-- Cambié "bg-black" a "bg-dark" -->
-        <div class="container">
-            <nav class="navbar navbar-expand-lg navbar-dark"> <!-- Agregué "navbar-dark" para cambiar a un tema oscuro -->
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="#">AUTO <strong>VIP</strong></a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav ms-auto ">
-                            <li class="nav-item text-body-secondary">
-                                <a class="nav-link active " aria-current="page" href="#">Home</a>
-                            </li>
-                            <li class="nav-item text-body-secondary">
-                                <a class="nav-link active " href="#">Venta 0km</a>
-                            </li>
-                            <li class="nav-item text-body-secondary">
-                                <a class="nav-link active " href="#">Venta Usados</a>
-                            </li>
-                            <li class="nav-item text-body-secondary">
-                                <a class="nav-link active" aria-disabled="true">Sobre Nosotros</a>
-                            </li>
-                            <li class="nav-item text-body-secondary">
-                                <a class="nav-link active" aria-disabled="true">Contacto</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        </div>
+    <div class="bg-dark">
+      <!-- Cambié "bg-black" a "bg-dark" -->
+      <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-dark">
+          <!-- Agregué "navbar-dark" para cambiar a un tema oscuro -->
+          <div class="container-fluid">
+            <a class="navbar-brand" href="#">AUTO <strong>VIP</strong></a>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarNav"
+              aria-controls="navbarNav"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav ms-auto">
+                <li class="nav-item text-body-secondary">
+                  <a class="nav-link active" aria-current="page" href="#"
+                    >Home</a
+                  >
+                </li>
+                <li class="nav-item text-body-secondary">
+                  <a class="nav-link active" href="#">Venta 0km</a>
+                </li>
+                <li class="nav-item text-body-secondary">
+                  <a class="nav-link active" href="#">Venta Usados</a>
+                </li>
+                <li class="nav-item text-body-secondary">
+                  <a class="nav-link active" aria-disabled="true"
+                    >Sobre Nosotros</a
+                  >
+                </li>
+                <li class="nav-item text-body-secondary">
+                  <a class="nav-link active" aria-disabled="true">Contacto</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
     </div>
 
     <div id="home">
@@ -143,46 +157,46 @@
       </div>
     </div>
 
-    <div id="footer">
+    <div id="footer" class="bg-dark">
       <div class="container">
-        <div class="bg-dark">
-          <div class="row">
-            <div class="col-md-3 ">
-              <img
-                id="footer-logo"
-                src="img/automotora_vip_logo.png"
-                alt="AutoVIP"
-              />
-            </div>
+        <div class="row">
+          <div class="col-md-3">
+            <img
+              id="footer-logo"
+              src="img/automotora_vip_logo.png"
+              alt="AutoVIP"
+              class="w-25"
+            />
+          </div>
 
-            <div class="col-md-3">
-              <ul>
-                <li><a href="ventas.html">Venta 0km</a></li>
-                <li><a href="ventas.html">Venta Usados</a></li>
-              </ul>
-            </div>
+          <div class="col-md-3">
+            <ul>
+              <li><a href="ventas.html">Venta 0km</a></li>
+              <li><a href="ventas.html">Venta Usados</a></li>
+            </ul>
+          </div>
 
-            <div class="col-md-3">
-              <ul>
-                <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
-                <li>
-                  <a
-                    href="#"
-                    data-bs-toggle="modal"
-                    data-bs-target="#contacto-modal"
-                    >Contacto</a
-                  >
-                </li>
-              </ul>
-            </div>
+          <div class="col-md-3">
+            <ul>
+              <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+              <li>
+                <a
+                  href="#"
+                  data-bs-toggle="modal"
+                  data-bs-target="#contacto-modal"
+                  >Contacto</a
+                >
+              </li>
+            </ul>
+          </div>
 
-            <div class="col-md-3">
-              <p style="color: #ddd">Copyright &copy; AutoVIP 2023</p>
-            </div>
+          <div class="col-md-3">
+            <p style="color: #ddd">Copyright &copy; AutoVIP 2023</p>
           </div>
         </div>
       </div>
     </div>
+
     <div
       id="contacto-modal"
       class="modal fade"
