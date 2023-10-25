@@ -17,8 +17,9 @@ body {
   }
 <<<<<<< Updated upstream
 
-#footer-logo {
-  width: 8rem;
+a {
+  text-decoration: none;
+  color: white;
 }
   
 =======
