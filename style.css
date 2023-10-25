@@ -15,6 +15,10 @@ body {
   h6 {
     font-family: "Lato", sans-serif;
   }
+
+#footer-logo {
+  width: 8rem;
+}
   
   /*****************************************************************
   
