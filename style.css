@@ -1,7 +1,6 @@
 /* Mi código CSS */
 
 body {
-  padding-top: 60px;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -20,6 +19,13 @@ a {
   text-decoration: none;
   color: white;
 }
+  
+  #carousel {
+    max-height: 36vw;
+    height: 600px;
+  }
+
+
 
 #carousel {
   max-height: 36vw;
