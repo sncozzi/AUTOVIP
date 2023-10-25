@@ -29,6 +29,9 @@ a {
 .navbar2 {
   border-bottom: 4px solid orange;
 }
+#footer {
+  border-top: 4px solid orange;
+}
 /*****************************************************************
   
       HEADER
