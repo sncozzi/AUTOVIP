@@ -1,20 +1,19 @@
 /* Mi código CSS */
 
 body {
-    padding-top: 60px;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-family: "Lato", sans-serif;
-  }
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Lato", sans-serif;
+}
 
 a {
   text-decoration: none;
@@ -26,9 +25,18 @@ a {
     height: 600px;
   }
 
-  /*****************************************************************
+
+
+#carousel {
+  max-height: 36vw;
+  height: 600px;
+}
+
+.navbar2 {
+  border-bottom: 4px solid orange;
+}
+/*****************************************************************
   
       HEADER
   
   /*****************************************************************/
-  
