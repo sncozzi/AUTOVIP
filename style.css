@@ -37,6 +37,15 @@ a {
   height: 36vw;
   object-fit: cover;
 } 
+#footer {
+  border-top: 4px solid orange;
+}
+
+#imgAboutUs {
+  width: 30rem;
+  
+}
+
 
 /*****************************************************************
   
