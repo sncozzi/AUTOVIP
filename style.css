@@ -15,11 +15,18 @@ body {
   h6 {
     font-family: "Lato", sans-serif;
   }
+<<<<<<< Updated upstream
 
 #footer-logo {
   width: 8rem;
 }
   
+=======
+  #carousel {
+    max-height: 36vw;
+    height: 600px;
+  }
+>>>>>>> Stashed changes
   /*****************************************************************
   
       HEADER
