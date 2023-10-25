@@ -25,6 +25,10 @@ a {
   max-height: 36vw;
   height: 600px;
 }
+
+.navbar2 {
+  border-bottom: 4px solid orange;
+}
 /*****************************************************************
   
       HEADER
