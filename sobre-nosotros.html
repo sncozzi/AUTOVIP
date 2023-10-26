@@ -74,10 +74,10 @@
                   >
                 </li>
                 <li class="nav-item text-body-secondary">
-                  <a class="nav-link active" href="#">Venta 0km</a>
+                  <a class="nav-link active" href="ventas.html">Venta 0km</a>
                 </li>
                 <li class="nav-item text-body-secondary">
-                  <a class="nav-link active" href="#">Venta Usados</a>
+                  <a class="nav-link active" href="ventas.html">Venta Usados</a>
                 </li>
                 <li class="nav-item text-body-secondary">
                   <a class="nav-link active" href="sobre-nosotros.html">Sobre Nosotros</a>
@@ -195,9 +195,7 @@
           <div
             class="col-md-3 d-flex justify-content-center align-items-center"
           >
-            <div
-              class="col-md-12 d-flex justify-content-center align-items-center"
-            >
+            <div class="col-md-12 d-flex align-items-start">
               <img
                 id="footer-logo"
                 src="img/automotora_vip_logo.png"
@@ -230,6 +228,60 @@
 
           <div class="col-md-3 mt-4">
             <p style="color: #ddd">Copyright &copy; AutoVIP 2023</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Contacto</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="recipient-name" class="col-form-label"
+                  ><strong>Nombre</strong></label
+                >
+                <input type="text" class="form-control" id="recipient-name" />
+              </div>
+              <div class="mb-3">
+                <label for="recipient-name" class="col-form-label"
+                  ><strong>Email</strong></label
+                >
+                <input type="text" class="form-control" id="recipient-name" />
+              </div>
+              <div class="mb-3">
+                <label for="message-text" class="col-form-label"
+                  ><strong>Mensaje</strong>
+                </label>
+                <textarea class="form-control" id="message-text"></textarea>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-success">Enviar</button>
           </div>
         </div>
       </div>
