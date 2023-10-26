@@ -43,7 +43,8 @@ a {
 
 #imgAboutUs {
   width: 30rem;
-  
+  border: 1px solid grey;
+  padding: 2px;
 }
 
 
