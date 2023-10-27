@@ -36,7 +36,7 @@ a {
 .carousel-img {
   height: 36vw;
   object-fit: cover;
-} 
+}
 #footer {
   border-top: 4px solid orange;
 }
@@ -48,12 +48,11 @@ a {
 }
 
 .card-body {
-    text-align: center;
+  text-align: center;
 }
 .co {
   font-weight: lighter;
 }
-  
 
 /*****************************************************************
   
