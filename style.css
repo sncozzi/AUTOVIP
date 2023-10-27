@@ -47,7 +47,12 @@ a {
   padding: 2px;
 }
 
-
+.card-body {
+    text-align: center;
+}
+.co {
+  font-weight: lighter;
+}
   
 
 /*****************************************************************
