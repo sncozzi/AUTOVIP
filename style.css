@@ -25,18 +25,20 @@ a {
   height: 600px;
 }
 
-#carousel {
-  max-height: 36vw;
-  height: 600px;
-}
 
 .navbar2 {
   border-bottom: 4px solid orange;
+}
+
+#carousel {
+  max-height: 36vw;
+  height: 600px;
 }
 .carousel-img {
   height: 36vw;
   object-fit: cover;
 }
+
 #footer {
   border-top: 4px solid orange;
 }
@@ -52,6 +54,42 @@ a {
 }
 .co {
   font-weight: lighter;
+}
+
+#form {
+  width: 250px;
+  margin: 0 auto;
+  height: 50px;
+}
+
+#form p {
+  text-align: center;
+}
+
+#form label {
+  font-size: 20px;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+label {
+  color: grey;
+}
+
+.clasificacion {
+  direction: rtl;
+  unicode-bidi: bidi-override;
+}
+
+label:hover,
+label:hover ~ label {
+  color: orange;
+}
+
+input[type="radio"]:checked ~ label {
+  color: orange;
 }
 
 /*****************************************************************
