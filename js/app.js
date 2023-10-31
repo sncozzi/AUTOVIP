@@ -9,3 +9,7 @@ fetch("https://ha-front-api-proyecto-final.vercel.app/cars")
     return res.json();
 })
 .then
+
+.catch(function (err) {
+    console.error(err);
+    loader.style.display = "none"; })
