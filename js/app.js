@@ -4,6 +4,7 @@ const price = document.getElementById("price");
 const description = document.getElementById("description");
 const brand = document.getElementById("brand");
 const select = document.getElementById("marca");
+const modeloSelect = document.getElementById("modeloSelect");
 fetch("https://ha-front-api-proyecto-final.vercel.app/cars")
   .then(function (res) {
     return res.json();
@@ -29,32 +30,56 @@ fetch("https://ha-front-api-proyecto-final.vercel.app/brands")
     }
   });
 
+fetch("https://ha-front-api-proyecto-final.vercel.app/models?brand=Audi")
+  .then(function (res) {
+    return res.json();
+  })
+  .then(function (modelos) {
+    for (const modelo of modelos) {
+      const option = document.createElement("option");
+      option.value = modelo;
+      option.textContent = modelo;
+      modeloSelect.appendChild(option);
+    }
+  });
+
+  select.addEventListener("change", function () {
+    const selectedBrand = select.value;
+  
+    fetch(`https://ha-front-api-proyecto-final.vercel.app/models?brand=${selectedBrand}`)
+      .then(function (res) {
+        return res.json();
+      })
+      .then(function (modelos) {
+        modeloSelect.innerHTML = '';
+        const modelosHTML = modelos.map(modelo => `<option value="${modelo}">${modelo}</option>`).join('');
+        modeloSelect.insertAdjacentHTML('beforeend', modelosHTML);
+      });
+  });
 
 const carContainer = document.getElementById("car-container");
-  
-  document
-    .getElementById("filterButton")
-    .addEventListener("click", function (event) {
-      event.preventDefault(); // Evita el envío del formulario
 
-      // el código de filtrado mas tarde
+document
+  .getElementById("filterButton")
+  .addEventListener("click", function (event) {
+    event.preventDefault(); // evita el envío del formulario
 
-     
-      carContainer.innerHTML = ""; // Limpia el contenido anterior
+    // el código de filtrado mas tarde
 
-      fetch("https://ha-front-api-proyecto-final.vercel.app/cars")
-        .then((response) => response.json())
-        .then((data) => {
-          data.forEach((car) => {
-            const card = createCarCard(car);
-            carContainer.appendChild(card);
-          });
-        })
-        .catch((error) => {
-          console.error("Error al obtener datos de la API:", error);
+    carContainer.innerHTML = "";
+
+    fetch("https://ha-front-api-proyecto-final.vercel.app/cars")
+      .then((response) => response.json())
+      .then((data) => {
+        data.forEach((car) => {
+          const card = createCarCard(car);
+          carContainer.appendChild(card);
         });
-    });
-
+      })
+      .catch((error) => {
+        console.error("Error al obtener datos de la API:", error);
+      });
+  });
 
 function createCarCard(car) {
   const card = document.createElement("div");
