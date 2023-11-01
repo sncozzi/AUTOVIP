@@ -3,18 +3,31 @@ const year = document.getElementById("yearSelect");
 const price = document.getElementById("price");
 const description = document.getElementById("description");
 const brand = document.getElementById("brand");
-
-fetch("https://ha-front-api-proyecto-final.vercel.app/cars").then(function (
-  res
-) {
-  return res.json();
-}).then;
-for (let i = 1900; i < 2023; i++) {
-  let option = document.createElement("option");
-  option.value = i;
-  option.textContent = i;
-  year.appendChild(option);
-}
+const select = document.getElementById("marca");
+fetch("https://ha-front-api-proyecto-final.vercel.app/cars")
+  .then(function (res) {
+    return res.json();
+  })
+  .then(function (car) {
+    for (let i = 1900; i < 2023; i++) {
+      let option = document.createElement("option");
+      option.value = i;
+      option.textContent = i;
+      year.appendChild(option);
+    }
+  });
+fetch("https://ha-front-api-proyecto-final.vercel.app/brands")
+  .then(function (res) {
+    return res.json();
+  })
+  .then(function (marcas) {
+    for (const marca of marcas) {
+      const option = document.createElement("option");
+      option.value = marca;
+      option.textContent = marca;
+      select.appendChild(option);
+    }
+  });
 
 document.addEventListener("DOMContentLoaded", function () {
   const apiUrl = "https://ha-front-api-proyecto-final.vercel.app/cars";
@@ -33,11 +46,11 @@ document.addEventListener("DOMContentLoaded", function () {
       console.error("Error al obtener datos de la API:", error);
     });
 
-    function createCarCard(car) {
-      const card = document.createElement("div");
-      card.className = "card mb-3 mt-3";
-    
-      card.innerHTML = `
+  function createCarCard(car) {
+    const card = document.createElement("div");
+    card.className = "card mb-3 mt-3";
+
+    card.innerHTML = `
         <div class="row g-0">
           <div class="col-12 col-xl-5">
             <img
@@ -93,21 +106,30 @@ document.addEventListener("DOMContentLoaded", function () {
           </div>
         </div>
       `;
-    
-      return card;
-    }
-    
-    function getStarRating(rating) {
-      let stars = '';
-      for (let i = 1; i <= 5; i++) {
-        if (i <= rating) {
-          stars += '<input type="radio" name="estrellas" value="' + i + '" checked id="radio' + i + '">';
-        } else {
-          stars += '<input type="radio" name="estrellas" value="' + i + '" id="radio' + i + '">';
-        }
-        stars += '<label for="radio' + i + '">★</label>';
+
+    return card;
+  }
+
+  function getStarRating(rating) {
+    let stars = "";
+    for (let i = 1; i <= 5; i++) {
+      if (i <= rating) {
+        stars +=
+          '<input type="radio" name="estrellas" value="' +
+          i +
+          '" checked id="radio' +
+          i +
+          '">';
+      } else {
+        stars +=
+          '<input type="radio" name="estrellas" value="' +
+          i +
+          '" id="radio' +
+          i +
+          '">';
       }
-      return stars;
+      stars += '<label for="radio' + i + '">★</label>';
     }
-    
+    return stars;
+  }
 });
