@@ -104,6 +104,7 @@ label:hover ~ label {
 input[type="radio"]:checked ~ label {
   color: orange;
 }
+
 .loader {
   border: 8px solid #f3f3f3;
   border-top: 8px solid #3498db;
