@@ -52,10 +52,10 @@ document.addEventListener("DOMContentLoaded", function () {
                   <div class="card-body">
                     <div class="d-flex justify-content-between">
                       <h5 id="brand" class="card-title">
-                        <strong>Audi Q5</strong>
+                        <strong> ${car.brand} ${car.model}</strong>
                       </h5>
                       <div class="d-flex justify-content-between">
-                        <p id="year" class="pe-1">2017</p>
+                        <p id="year" class="pe-1">${car.year}</p>
                         <p id="price" class="pe-1">| USD 92.000 |</p>
                         <form>
                           <p class="clasificacion">
