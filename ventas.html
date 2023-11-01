@@ -107,7 +107,7 @@
       <div class="mt-5 mb-5">
         <h1>Ventas</h1>
         <hr />
-        
+
         <div class="row">
           <div class="col-md-3 bg-body-secondary mt-3 p-3">
             <div class="filter-box">
@@ -116,7 +116,7 @@
               <form>
                 <div class="mb-3">
                   <label for="year"><strong>Año:</strong></label>
-                  <select class="form-select" id="year">
+                  <select class="form-select" id="yearSelect">
                     <option value="">Seleccionar</option>
                   </select>
                 </div>
@@ -142,15 +142,18 @@
                   </select>
                 </div>
 
-                <button type="submit" class="btn w-100" style="background-color: #fb8b04; color: white;">
+                <button
+                  type="submit"
+                  class="btn w-100"
+                  style="background-color: #fb8b04; color: white"
+                >
                   Filtrar <i class="fas fa-search"></i>
-              </button>
-                
+                </button>
               </form>
             </div>
           </div>
 
-          <div class="col-md-9">
+          <div class="col-md-9" id="car-container">
             <div class="card mb-3 mt-3" style="max-width: 100%">
               <div class="row g-0">
                 <div class="col-12 col-xl-5">
@@ -164,7 +167,9 @@
                 <div class="col-12 col-xl-7">
                   <div class="card-body">
                     <div class="d-flex justify-content-between">
-                      <h5 id="brand" class="card-title"><strong>Audi Q5</strong></h5>
+                      <h5 id="brand" class="card-title">
+                        <strong>Audi Q5</strong>
+                      </h5>
                       <div class="d-flex justify-content-between">
                         <p id="year" class="pe-1">2017</p>
                         <p id="price" class="pe-1">| USD 92.000 |</p>
@@ -221,12 +226,16 @@
                       molestias.
                     </p>
                     <div>
-                      <button type="button" class="btn" style="background-color: #5cb95c; color: aliceblue;">
+                      <button
+                        type="button"
+                        class="btn"
+                        style="background-color: #5cb95c; color: aliceblue"
+                      >
                         <i class="bi bi-cart-fill"> </i>Comprar
                       </button>
                       <button
                         type="button"
-                        class="btn btn-light "
+                        class="btn btn-light"
                         style="border: 1px solid #000"
                       >
                         <i class="bi bi-plus-square"> </i> Más información
@@ -331,7 +340,6 @@
             </form>
           </div>
           <div class="modal-footer">
-         
             <button type="button" class="btn btn-success">Enviar</button>
           </div>
         </div>
