@@ -31,18 +31,7 @@ fetch("https://ha-front-api-proyecto-final.vercel.app/brands")
     }
   });
 
-fetch("https://ha-front-api-proyecto-final.vercel.app/models?brand=Audi")
-  .then(function (res) {
-    return res.json();
-  })
-  .then(function (modelos) {
-    for (const modelo of modelos) {
-      const option = document.createElement("option");
-      option.value = modelo;
-      option.textContent = modelo;
-      modeloSelect.appendChild(option);
-    }
-  });
+
 
   select.addEventListener("change", function () {
     const selectedBrand = select.value;
