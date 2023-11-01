@@ -4,7 +4,8 @@ const price = document.getElementById("price");
 const description = document.getElementById("description");
 const brand = document.getElementById("brand");
 const select = document.getElementById("marca");
-const modeloSelect = document.getElementById("modeloSelect");
+
+
 fetch("https://ha-front-api-proyecto-final.vercel.app/cars")
   .then(function (res) {
     return res.json();
@@ -67,6 +68,15 @@ document
     // el código de filtrado mas tarde
 
     carContainer.innerHTML = "";
+
+document
+  .getElementById("filterButton")
+  .addEventListener("click", function (event) {
+    event.preventDefault(); // Evita el envío del formulario
+
+    // el código de filtrado mas tarde
+
+    carContainer.innerHTML = ""; // Limpia el contenido anterior
 
     fetch("https://ha-front-api-proyecto-final.vercel.app/cars")
       .then((response) => response.json())
@@ -166,4 +176,5 @@ function getStarRating(rating) {
     stars += '<label for="radio' + i + '">★</label>';
   }
   return stars;
-}
+
+}})
