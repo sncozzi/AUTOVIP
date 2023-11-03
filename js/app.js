@@ -5,7 +5,6 @@ const description = document.getElementById("description");
 const brand = document.getElementById("brand");
 const select = document.getElementById("marca");
 
-
 fetch("https://ha-front-api-proyecto-final.vercel.app/cars")
   .then(function (res) {
     return res.json();
@@ -31,20 +30,23 @@ fetch("https://ha-front-api-proyecto-final.vercel.app/brands")
     }
   });
 
-  select.addEventListener("change", function () {
-    const selectedBrand = select.value;
-  
-    fetch(`https://ha-front-api-proyecto-final.vercel.app/models?brand=${selectedBrand}`)
-      .then(function (res) {
-        return res.json();
-      })
-      .then(function (modelos) {
-        modeloSelect.innerHTML = '';
-        const modelosHTML = modelos.map(modelo => `<option value="${modelo}">${modelo}</option>`).join('');
-        modeloSelect.insertAdjacentHTML('beforeend', modelosHTML);
-      });
-  });
+select.addEventListener("change", function () {
+  const selectedBrand = select.value;
 
+  fetch(
+    `https://ha-front-api-proyecto-final.vercel.app/models?brand=${selectedBrand}`
+  )
+    .then(function (res) {
+      return res.json();
+    })
+    .then(function (modelos) {
+      modeloSelect.innerHTML = "";
+      const modelosHTML = modelos
+        .map((modelo) => `<option value="${modelo}">${modelo}</option>`)
+        .join("");
+      modeloSelect.insertAdjacentHTML("beforeend", modelosHTML);
+    });
+});
 
 const carContainer = document.getElementById("car-container");
 
@@ -52,36 +54,7 @@ document
   .getElementById("filterButton")
   .addEventListener("click", function (event) {
     event.preventDefault(); // Evita el envío del formulario
-    const selectedYear = year.value;
-    const selectedBrand = select.value;
-    const selectedModel = modeloSelect.value;
-    const selectedState = estado.value;
-  
-    // Filtrar los coches basados en los criterios seleccionados
-    const filteredCars = data.filter((car) => {
-      if (selectedYear && car.year !== parseInt(selectedYear)) {
-        return false;
-      }
-      if (selectedBrand && car.brand !== selectedBrand) {
-        return false;
-      }
-      if (selectedModel && car.model !== selectedModel) {
-        return false;
-      }
-      if (selectedState && car.state !== selectedState) {
-        return false;
-      }
-      return true;
-    });
-  
-    // Limpiar el contenedor de coches
-    carContainer.innerHTML = "";
-  
-    // Mostrar los coches filtrados
-    filteredCars.forEach((car) => {
-      const card = createCarCard(car);
-      carContainer.appendChild(card);
-    });
+
     // el código de filtrado mas tarde
 
     carContainer.innerHTML = ""; // Limpia el contenido anterior
@@ -184,5 +157,4 @@ function getStarRating(rating) {
     stars += '<label for="radio' + i + '">★</label>';
   }
   return stars;
-
 }
