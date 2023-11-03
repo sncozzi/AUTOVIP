@@ -1,11 +1,8 @@
-/* Mi código CSS */
-
 body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   position: relative;
-  padding-bottom: 5rem;
 }
 
 h1,
@@ -42,7 +39,7 @@ a {
 
 #footer {
   border-top: 4px solid orange;
-  position: absolute;
+  /* position: absolute; */
   bottom: 0;
   width: 100%;
 }
@@ -55,10 +52,17 @@ a {
   width: 10rem;
 }
 
-.imgAuto {
-  height: 100%;
-  object-fit: cover;
+.card {
+  width: 100%; 
 }
+
+
+.imgAuto {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
 
 .imgVentas {
   object-fit: fill;
@@ -68,46 +72,6 @@ a {
   width: 30rem;
   border: 1px solid grey;
   padding: 2px;
-}
-
-.co {
-  font-weight: lighter;
-}
-
-#form {
-  width: 250px;
-  margin: 0 auto;
-  height: 50px;
-}
-
-#form p {
-  text-align: center;
-}
-
-#form label {
-  font-size: 20px;
-}
-
-input[type="radio"] {
-  display: none;
-}
-
-label {
-  color: grey;
-}
-
-.clasificacion {
-  direction: rtl;
-  unicode-bidi: bidi-override;
-}
-
-label:hover,
-label:hover ~ label {
-  color: orange;
-}
-
-input[type="radio"]:checked ~ label {
-  color: orange;
 }
 
 .loader {
@@ -124,8 +88,6 @@ input[type="radio"]:checked ~ label {
   display: none;
 }
 
-/*****************************************************************
-  
-      HEADER
-  
-  /*****************************************************************/
+.bi-star-fill {
+  color: orange;
+}
