@@ -25,8 +25,7 @@ fetch("https://ha-front-api-proyecto-final.vercel.app/cars")
       option.textContent = i;
       year.appendChild(option);
     }
-  } 
-  );
+  });
 
 fetch("https://ha-front-api-proyecto-final.vercel.app/brands")
   .then(function (res) {
@@ -92,21 +91,20 @@ document
           });
       });
 
-<<<<<<< Updated upstream
-  function createCarCard(car) {
-    const card = document.createElement("div");
-    card.className = "card mb-3 mt-3";
-  
-    const starIcons = [];
-    for (let i = 1; i <= 5; i++) {
-      if (i <= car.rating) {
-        starIcons.push('<i class="bi bi-star-fill"></i>');
-      } else {
-        starIcons.push('<i class="bi bi-star"></i>');
+    function createCarCard(car) {
+      const card = document.createElement("div");
+      card.className = "card mb-3 mt-3";
+
+      const starIcons = [];
+      for (let i = 1; i <= 5; i++) {
+        if (i <= car.rating) {
+          starIcons.push('<i class="bi bi-star-fill"></i>');
+        } else {
+          starIcons.push('<i class="bi bi-star"></i>');
+        }
       }
-    }
-  
-    card.innerHTML = `
+
+      card.innerHTML = `
       <div class="row g-0">
         <div class="col-12 col-xl-5">
           <img
@@ -127,7 +125,7 @@ document
                 <p id="price" class="pe-1">| USD ${car.price_usd} |</p>
                 <form>
                   <p class="clasificacion">
-                    ${starIcons.join('')}
+                    ${starIcons.join("")}
                   </p>
                 </form>
               </div>
@@ -158,74 +156,11 @@ document
                 <i class="bi bi-box-arrow-up-right"> </i>Compartir
               </button>
             </div>
-=======
-    function createCarCard(car) {
-      const card = document.createElement("div");
-      card.className = "card mb-3 mt-3";
-
-      card.innerHTML = `
-  <div class="row g-0">
-    <div class="col-12 col-xl-5">
-      <img
-        src="${car.image}"
-        id="carImg"
-        class="img-fluid rounded-start imgAuto"
-        alt=""
-      />
-    </div>
-    <div class="col-12 col-xl-7">
-      <div class="card-body">
-        <div class="d-flex justify-content-between">
-          <h5 id="brand" class="card-title">
-            <strong> ${car.brand} ${car.model}</strong>
-          </h5>
-          <div class="d-flex justify-content-between">
-            <p id="year" class="pe-1">${car.year}</p>
-            <p id="price" class="pe-1">| USD ${car.price_usd} |</p>
-            <form>
-              <p class="clasificacion">
-                ${getStarRating(car.rating)}
-              </p>
-            </form>
->>>>>>> Stashed changes
           </div>
         </div>
       </div>
-<<<<<<< Updated upstream
     `;
-  
-    return card;
-  }
-  
-=======
-    </div>
-  </div>
-`;
 
       return card;
     }
-
-    function getStarRating(rating) {
-      let stars = "";
-      for (let i = 1; i <= 5; i++) {
-        if (i <= rating) {
-          stars +=
-            '<input type="radio" name="estrellas" value="' +
-            i +
-            '" checked id="radio' +
-            i +
-            '">';
-        } else {
-          stars +=
-            '<input type="radio" name="estrellas" value="' +
-            i +
-            '" id="radio' +
-            i +
-            '">';
-        }
-        stars += '<label for="radio' + i + '">★</label>';
-      }
-      return stars;
-    }
   });
->>>>>>> Stashed changes
