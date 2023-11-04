@@ -16,7 +16,15 @@ function createCarCard(car) {
       starIcons.push('<i class="bi bi-star"></i>');
     }
   }
-  const isNewBadge = car.status === 1 ? '<span class="badge text-bg-danger m-2 p-2 position-absolute">Nuevo</span>' : '';
+  const isNewBadge = car.status === 1
+  ? '<span class="badge text-bg-danger m-2 p-2 position-absolute badge-hover">Nuevo</span>'
+  : '';
+
+  const priceFormatted = new Intl.NumberFormat('es-ES', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 0
+  }).format(car.price_usd);
 
   card.innerHTML = `
     <div class="row g-0">
@@ -27,12 +35,10 @@ function createCarCard(car) {
       <div class="col-12 col-xl-7">
         <div class="card-body">
           <div class="d-flex justify-content-between">
-            <h5 class="card-title"><strong>${car.brand} ${
-    car.model
-  }</strong></h5>
+            <h5 class="card-title"><strong>${car.brand} ${car.model}</strong></h5>
             <div class="d-flex justify-content-between">
               <p class="pe-1">${car.year}</p>
-              <p class="pe-1">| USD ${car.price_usd} |</p>
+              <p class="pe-1">| ${priceFormatted} |</p>
               <form>
                 <p class="clasificacion">${starIcons.join("")}</p>
               </form>
@@ -46,9 +52,9 @@ function createCarCard(car) {
               <i class="bi bi-cart-fill"></i>Comprar
             </button>
             <button type="button" class="btn btn-light" style="border: 1px solid #000">
-              <i class="bi bi-plus-square"></i> Más información
+              <i class="bi bi-plus-square"></i> Información
             </button>
-            <button type="button" class="btn btn-light" style="border: 1px solid #000">
+            <button type="button" class="btn btn-light mt-2 mt-sm-0" style="border: 1px solid #000">
               <i class="bi bi-box-arrow-up-right"></i>Compartir
             </button>
           </div>
@@ -59,6 +65,7 @@ function createCarCard(car) {
 
   return card;
 }
+
 
 fetch("https://ha-front-api-proyecto-final.vercel.app/cars")
   .then((res) => res.json())

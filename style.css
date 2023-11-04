@@ -88,4 +88,10 @@ a {
   100% { transform: rotate(360deg); }
 }
 
+.badge-hover {
+  transition: transform 0.2s ease-in-out;
+}
 
+.badge-hover:hover {
+  transform: scale(1.1);
+}
