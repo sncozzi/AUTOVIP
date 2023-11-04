@@ -2,7 +2,6 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  position: relative;
 }
 
 h1,
@@ -19,11 +18,6 @@ a {
   color: white;
 }
 
-#carousel {
-  max-height: 36vw;
-  height: 600px;
-}
-
 .navbar2 {
   border-bottom: 4px solid orange;
 }
@@ -32,16 +26,15 @@ a {
   max-height: 36vw;
   height: 600px;
 }
+
 .carousel-img {
   height: 36vw;
   object-fit: cover;
 }
 
 #footer {
+  margin-top: auto; 
   border-top: 4px solid orange;
-  /* position: absolute; */
-  bottom: 0;
-  width: 100%;
 }
 
 #footer-logo {
@@ -74,20 +67,6 @@ a {
   padding: 2px;
 }
 
-.loader {
-  border: 8px solid #f3f3f3;
-  border-top: 8px solid #3498db;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  animation: spin 2s linear infinite;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: none;
-}
-
 .bi-star-fill {
   color: orange;
 }
@@ -108,3 +87,5 @@ a {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+

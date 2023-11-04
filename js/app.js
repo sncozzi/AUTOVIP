@@ -8,7 +8,6 @@ const loader = document.querySelector("#loader");
 function createCarCard(car) {
   const card = document.createElement("div");
   card.className = "card mb-3 mt-3";
-
   const starIcons = [];
   for (let i = 1; i <= 5; i++) {
     if (i <= car.rating) {
@@ -17,13 +16,13 @@ function createCarCard(car) {
       starIcons.push('<i class="bi bi-star"></i>');
     }
   }
+  const isNewBadge = car.status === 1 ? '<span class="badge text-bg-danger m-2 p-2 position-absolute">Nuevo</span>' : '';
 
   card.innerHTML = `
     <div class="row g-0">
-      <div class="col-12 col-xl-5">
-        <img src="${
-          car.image
-        }" class="img-fluid rounded-start imgAuto" alt="" />
+      <div class="col-12 col-xl-5 position-relative">
+        ${isNewBadge}
+        <img src="${car.image}" class="img-fluid rounded-start imgAuto" alt="" />
       </div>
       <div class="col-12 col-xl-7">
         <div class="card-body">
@@ -70,6 +69,9 @@ fetch("https://ha-front-api-proyecto-final.vercel.app/cars")
       option.textContent = i;
       yearSelect.appendChild(option);
     }
+  })
+  .catch((error) => {
+    console.error(error);
   });
 
 fetch("https://ha-front-api-proyecto-final.vercel.app/brands")
@@ -81,8 +83,12 @@ fetch("https://ha-front-api-proyecto-final.vercel.app/brands")
       option.textContent = marca;
       select.appendChild(option);
     }
+  })
+  .catch((error) => {
+    console.error(error);
   });
 
+  
 select.addEventListener("change", function () {
   const selectedBrand = select.value;
 
@@ -91,15 +97,14 @@ select.addEventListener("change", function () {
   )
     .then((res) => res.json())
     .then(function (modelos) {
-      if (modelos.length === 0) {
-        carContainer.innerHTML = "<h3 class= 'mt-2'>No hay stock disponible</h3>";
-      } else {
         modeloSelect.innerHTML = "";
         const modelosHTML = modelos
           .map((modelo) => `<option value="${modelo}">${modelo}</option>`)
           .join("");
         modeloSelect.insertAdjacentHTML("beforeend", modelosHTML);
-      }
+    })
+    .catch((error) => {
+      console.error(error);
     });
 });
 
@@ -108,37 +113,51 @@ document.getElementById("filterButton").addEventListener("click", function (even
   loader.style.display = "block";
   carContainer.innerHTML = "";
 
-    const selectedYear = yearSelect.value;
-    const selectedBrand = select.value;
-    const selectedModel = modeloSelect.value;
-    const selectedState = estado.value;
+  const selectedYear = yearSelect.value;
+  const selectedBrand = select.value;
+  const selectedModel = modeloSelect.value;
+  const selectedState = estado.value;
 
-    let apiUrl = "https://ha-front-api-proyecto-final.vercel.app/cars?";
-    if (selectedYear) {
-      apiUrl += `year=${selectedYear}&`;
-    }
-    if (selectedBrand) {
-      apiUrl += `brand=${selectedBrand}&`;
-    }
-    if (selectedModel) {
-      apiUrl += `model=${selectedModel}&`;
-    }
-    if (selectedState) {
-      apiUrl += `status=${selectedState === "Nuevo" ? 1 : 0}&`;
-    }
+  if (!selectedYear && !selectedBrand && !selectedModel && !selectedState) {
+    carContainer.innerHTML = `
+      <div class="alert alert-danger mt-3" role="alert">Debes seleccionar al menos una opción de filtro.</div>
+    `;
+    loader.style.display = "none";
+    return;
+  }
+let apiUrl = "https://ha-front-api-proyecto-final.vercel.app/cars?";
+  if (selectedYear) {
+    apiUrl += `year=${selectedYear}&`;
+  }
+  if (selectedBrand) {
+    apiUrl += `brand=${selectedBrand}&`;
+  }
+  if (selectedModel) {
+    apiUrl += `model=${selectedModel}&`;
+  }
+  if (selectedState) {
+    apiUrl += `status=${selectedState === "Nuevo" ? 1 : 0}&`;
+  }
 
   fetch(apiUrl)
     .then((response) => response.json())
     .then((data) => {
-      data.forEach((car) => {
-        const card = createCarCard(car);
-        carContainer.appendChild(card);
-        loader.style.display = "none"; }   
-      );
-    }) 
-    
+      if (data.length === 0) {
+        carContainer.innerHTML = `
+          <div class="alert alert-danger mt-3" role="alert">No hay resultados que coincidan con los filtros seleccionados.</div>
+        `;
+      } else {
+        data.forEach((car) => {
+          const card = createCarCard(car);
+          carContainer.appendChild(card);
+        });
+      }
+      loader.style.display = "none";
+    })
     .catch((error) => {
-      console.error("Error al obtener datos de la API:", error);
+      console.error(error);
       loader.style.display = "none";
     });
 });
+
+
