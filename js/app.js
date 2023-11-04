@@ -3,6 +3,7 @@ const yearSelect = document.getElementById("yearSelect");
 const modeloSelect = document.getElementById("modeloSelect");
 const select = document.getElementById("marca");
 const estado = document.getElementById("estado");
+const loader = document.querySelector("#loader");
 
 function createCarCard(car) {
   const card = document.createElement("div");
@@ -102,11 +103,10 @@ select.addEventListener("change", function () {
     });
 });
 
-document
-  .getElementById("filterButton")
-  .addEventListener("click", function (event) {
-    event.preventDefault();
-    carContainer.innerHTML = "";
+document.getElementById("filterButton").addEventListener("click", function (event) {
+  event.preventDefault();
+  loader.style.display = "block";
+  carContainer.innerHTML = "";
 
     const selectedYear = yearSelect.value;
     const selectedBrand = select.value;
@@ -127,15 +127,18 @@ document
       apiUrl += `status=${selectedState === "Nuevo" ? 1 : 0}&`;
     }
 
-    fetch(apiUrl)
-      .then((response) => response.json())
-      .then((data) => {
-        data.forEach((car) => {
-          const card = createCarCard(car);
-          carContainer.appendChild(card);
-        });
-      })
-      .catch((error) => {
-        console.error("Error al obtener datos de la API:", error);
-      });
-  });
+  fetch(apiUrl)
+    .then((response) => response.json())
+    .then((data) => {
+      data.forEach((car) => {
+        const card = createCarCard(car);
+        carContainer.appendChild(card);
+        loader.style.display = "none"; }   
+      );
+    }) 
+    
+    .catch((error) => {
+      console.error("Error al obtener datos de la API:", error);
+      loader.style.display = "none";
+    });
+});
