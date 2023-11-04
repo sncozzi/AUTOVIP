@@ -1,37 +1,74 @@
-const carImg = document.getElementById("carImg");
-const year = document.getElementById("yearSelect");
-const price = document.getElementById("price");
-const description = document.getElementById("description");
-const brand = document.getElementById("brand");
+const carContainer = document.getElementById("car-container");
+const yearSelect = document.getElementById("yearSelect");
+const modeloSelect = document.getElementById("modeloSelect");
 const select = document.getElementById("marca");
-const states = document.getElementById("estado");
+const estado = document.getElementById("estado");
+
+
+function createCarCard(car) {
+  const card = document.createElement("div");
+  card.className = "card mb-3 mt-3";
+
+  const starIcons = [];
+  for (let i = 1; i <= 5; i++) {
+    if (i <= car.rating) {
+      starIcons.push('<i class="bi bi-star-fill"></i>');
+    } else {
+      starIcons.push('<i class="bi bi-star"></i>');
+    }
+  }
+
+  card.innerHTML = `
+    <div class="row g-0">
+      <div class="col-12 col-xl-5">
+        <img src="${car.image}" class="img-fluid rounded-start imgAuto" alt="" />
+      </div>
+      <div class="col-12 col-xl-7">
+        <div class="card-body">
+          <div class="d-flex justify-content-between">
+            <h5 class="card-title"><strong>${car.brand} ${car.model}</strong></h5>
+            <div class="d-flex justify-content-between">
+              <p class="pe-1">${car.year}</p>
+              <p class="pe-1">| USD ${car.price_usd} |</p>
+              <form>
+                <p class="clasificacion">${starIcons.join("")}</p>
+              </form>
+            </div>
+          </div>
+          <p class="card-text" style="display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">${car.description}</p>
+          <div>
+            <button type="button" class="btn" style="background-color: #5cb95c; color: aliceblue">
+              <i class="bi bi-cart-fill"></i>Comprar
+            </button>
+            <button type="button" class="btn btn-light" style="border: 1px solid #000">
+              <i class="bi bi-plus-square"></i> Más información
+            </button>
+            <button type="button" class="btn btn-light" style="border: 1px solid #000">
+              <i class="bi bi-box-arrow-up-right"></i>Compartir
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  return card;
+}
 
 fetch("https://ha-front-api-proyecto-final.vercel.app/cars")
-  .then(function (res) {
-    return res.json();
-  })
-  // .then((res) => {
-  //   for (const car of res) {
-  //     const options = document.createElement("option");
-  //     options.value = state;
-  //     options.textContent = state;
-  //     states.appendChild(options);
-  //   }
-  // })
+  .then((res) => res.json())
   .then(() => {
     for (let i = 1900; i <= 2023; i++) {
       let option = document.createElement("option");
       option.value = i;
       option.textContent = i;
-      year.appendChild(option);
+      yearSelect.appendChild(option);
     }
   });
 
 fetch("https://ha-front-api-proyecto-final.vercel.app/brands")
-  .then(function (res) {
-    return res.json();
-  })
-  .then(function (marcas) {
+  .then((res) => res.json())
+  .then((marcas) => {
     for (const marca of marcas) {
       const option = document.createElement("option");
       option.value = marca;
@@ -43,12 +80,8 @@ fetch("https://ha-front-api-proyecto-final.vercel.app/brands")
 select.addEventListener("change", function () {
   const selectedBrand = select.value;
 
-  fetch(
-    `https://ha-front-api-proyecto-final.vercel.app/models?brand=${selectedBrand}`
-  )
-    .then(function (res) {
-      return res.json();
-    })
+  fetch(`https://ha-front-api-proyecto-final.vercel.app/models?brand=${selectedBrand}`)
+    .then((res) => res.json())
     .then(function (modelos) {
       modeloSelect.innerHTML = "";
       const modelosHTML = modelos
@@ -58,109 +91,38 @@ select.addEventListener("change", function () {
     });
 });
 
-const carContainer = document.getElementById("car-container");
+document.getElementById("filterButton").addEventListener("click", function (event) {
+  event.preventDefault();
+  carContainer.innerHTML = "";
 
-document
-  .getElementById("filterButton")
-  .addEventListener("click", function (event) {
-    event.preventDefault(); // evita el envío del formulario
+  const selectedYear = yearSelect.value;
+  const selectedBrand = select.value;
+  const selectedModel = modeloSelect.value;
+  const selectedState = estado.value;
 
-    // el código de filtrado mas tarde
+  let apiUrl = "https://ha-front-api-proyecto-final.vercel.app/cars?";
+  if (selectedYear) {
+    apiUrl += `year=${selectedYear}&`;
+  }
+  if (selectedBrand) {
+    apiUrl += `brand=${selectedBrand}&`;
+  }
+  if (selectedModel) {
+    apiUrl += `model=${selectedModel}&`;
+  }
+  if (selectedState) {
+    apiUrl += `status=${selectedState === "Nuevo" ? 1 : 0}&`;
+  }
 
-    carContainer.innerHTML = "";
-
-    document
-      .getElementById("filterButton")
-      .addEventListener("click", function (event) {
-        event.preventDefault(); // Evita el envío del formulario
-
-        // el código de filtrado mas tarde
-
-        carContainer.innerHTML = ""; // Limpia el contenido anterior
-
-        fetch("https://ha-front-api-proyecto-final.vercel.app/cars")
-          .then((response) => response.json())
-          .then((data) => {
-            data.forEach((car) => {
-              const card = createCarCard(car);
-              carContainer.appendChild(card);
-            });
-          })
-          .catch((error) => {
-            console.error("Error al obtener datos de la API:", error);
-          });
+  fetch(apiUrl)
+    .then((response) => response.json())
+    .then((data) => {
+      data.forEach((car) => {
+        const card = createCarCard(car);
+        carContainer.appendChild(card);
       });
-
-    function createCarCard(car) {
-      const card = document.createElement("div");
-      card.className = "card mb-3 mt-3";
-
-      const starIcons = [];
-      for (let i = 1; i <= 5; i++) {
-        if (i <= car.rating) {
-          starIcons.push('<i class="bi bi-star-fill"></i>');
-        } else {
-          starIcons.push('<i class="bi bi-star"></i>');
-        }
-      }
-
-      card.innerHTML = `
-      <div class="row g-0">
-        <div class="col-12 col-xl-5">
-          <img
-            src="${car.image}"
-            id="carImg"
-            class="img-fluid rounded-start imgAuto"
-            alt=""
-          />
-        </div>
-        <div class="col-12 col-xl-7">
-          <div class="card-body">
-            <div class="d-flex justify-content-between">
-              <h5 id="brand" class="card-title">
-                <strong> ${car.brand} ${car.model}</strong>
-              </h5>
-              <div class="d-flex justify-content-between">
-                <p id="year" class="pe-1">${car.year}</p>
-                <p id="price" class="pe-1">| USD ${car.price_usd} |</p>
-                <form>
-                  <p class="clasificacion">
-                    ${starIcons.join("")}
-                  </p>
-                </form>
-              </div>
-            </div>
-            <p id="description" class="card-text" style="display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
-              ${car.description}
-            </p>
-            <div>
-              <button
-                type="button"
-                class="btn"
-                style="background-color: #5cb95c; color: aliceblue"
-              >
-                <i class="bi bi-cart-fill"> </i>Comprar
-              </button>
-              <button
-                type="button"
-                class="btn btn-light"
-                style="border: 1px solid #000"
-              >
-                <i class="bi bi-plus-square"> </i> Más información
-              </button>
-              <button
-                type="button"
-                class="btn btn-light"
-                style="border: 1px solid #000"
-              >
-                <i class="bi bi-box-arrow-up-right"> </i>Compartir
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    `;
-
-      return card;
-    }
-  });
+    })
+    .catch((error) => {
+      console.error("Error al obtener datos de la API:", error);
+    });
+});
