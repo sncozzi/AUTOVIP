@@ -21,12 +21,16 @@ function createCarCard(car) {
   card.innerHTML = `
     <div class="row g-0">
       <div class="col-12 col-xl-5">
-        <img src="${car.image}" class="img-fluid rounded-start imgAuto" alt="" />
+        <img src="${
+          car.image
+        }" class="img-fluid rounded-start imgAuto" alt="" />
       </div>
       <div class="col-12 col-xl-7">
         <div class="card-body">
           <div class="d-flex justify-content-between">
-            <h5 class="card-title"><strong>${car.brand} ${car.model}</strong></h5>
+            <h5 class="card-title"><strong>${car.brand} ${
+    car.model
+  }</strong></h5>
             <div class="d-flex justify-content-between">
               <p class="pe-1">${car.year}</p>
               <p class="pe-1">| USD ${car.price_usd} |</p>
@@ -35,7 +39,9 @@ function createCarCard(car) {
               </form>
             </div>
           </div>
-          <p class="card-text" style="display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">${car.description}</p>
+          <p class="card-text" style="display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">${
+            car.description
+          }</p>
           <div>
             <button type="button" class="btn" style="background-color: #5cb95c; color: aliceblue">
               <i class="bi bi-cart-fill"></i>Comprar
@@ -80,14 +86,20 @@ fetch("https://ha-front-api-proyecto-final.vercel.app/brands")
 select.addEventListener("change", function () {
   const selectedBrand = select.value;
 
-  fetch(`https://ha-front-api-proyecto-final.vercel.app/models?brand=${selectedBrand}`)
+  fetch(
+    `https://ha-front-api-proyecto-final.vercel.app/models?brand=${selectedBrand}`
+  )
     .then((res) => res.json())
     .then(function (modelos) {
-      modeloSelect.innerHTML = "";
-      const modelosHTML = modelos
-        .map((modelo) => `<option value="${modelo}">${modelo}</option>`)
-        .join("");
-      modeloSelect.insertAdjacentHTML("beforeend", modelosHTML);
+      if (modelos.length === 0) {
+        carContainer.innerHTML = "<h3 class= 'mt-2'>No hay stock</h3>";
+      } else {
+        modeloSelect.innerHTML = "";
+        const modelosHTML = modelos
+          .map((modelo) => `<option value="${modelo}">${modelo}</option>`)
+          .join("");
+        modeloSelect.insertAdjacentHTML("beforeend", modelosHTML);
+      }
     });
 });
 
@@ -96,24 +108,24 @@ document.getElementById("filterButton").addEventListener("click", function (even
   loader.style.display = "block";
   carContainer.innerHTML = "";
 
-  const selectedYear = yearSelect.value;
-  const selectedBrand = select.value;
-  const selectedModel = modeloSelect.value;
-  const selectedState = estado.value;
+    const selectedYear = yearSelect.value;
+    const selectedBrand = select.value;
+    const selectedModel = modeloSelect.value;
+    const selectedState = estado.value;
 
-  let apiUrl = "https://ha-front-api-proyecto-final.vercel.app/cars?";
-  if (selectedYear) {
-    apiUrl += `year=${selectedYear}&`;
-  }
-  if (selectedBrand) {
-    apiUrl += `brand=${selectedBrand}&`;
-  }
-  if (selectedModel) {
-    apiUrl += `model=${selectedModel}&`;
-  }
-  if (selectedState) {
-    apiUrl += `status=${selectedState === "Nuevo" ? 1 : 0}&`;
-  }
+    let apiUrl = "https://ha-front-api-proyecto-final.vercel.app/cars?";
+    if (selectedYear) {
+      apiUrl += `year=${selectedYear}&`;
+    }
+    if (selectedBrand) {
+      apiUrl += `brand=${selectedBrand}&`;
+    }
+    if (selectedModel) {
+      apiUrl += `model=${selectedModel}&`;
+    }
+    if (selectedState) {
+      apiUrl += `status=${selectedState === "Nuevo" ? 1 : 0}&`;
+    }
 
   fetch(apiUrl)
     .then((response) => response.json())
