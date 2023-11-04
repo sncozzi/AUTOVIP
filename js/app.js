@@ -91,7 +91,7 @@ select.addEventListener("change", function () {
     .then((res) => res.json())
     .then(function (modelos) {
       if (modelos.length === 0) {
-        carContainer.innerHTML = "<h3 class= 'mt-2'>No hay stock</h3>";
+        carContainer.innerHTML = "<h3 class= 'mt-2'>No hay stock disponible</h3>";
       } else {
         modeloSelect.innerHTML = "";
         const modelosHTML = modelos
