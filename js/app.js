@@ -5,6 +5,8 @@ const select = document.getElementById("marca");
 const estado = document.getElementById("estado");
 const loader = document.querySelector("#loader");
 
+loadAllCars();
+
 function createCarCard(car) {
   const card = document.createElement("div");
   card.className = "card mb-3 mt-3";
@@ -90,11 +92,31 @@ fetch("https://ha-front-api-proyecto-final.vercel.app/brands")
       option.textContent = marca;
       select.appendChild(option);
     }
+    
   })
   .catch((error) => {
     console.error(error);
   });
 
+ 
+  function loadAllCars() {
+    fetch("https://ha-front-api-proyecto-final.vercel.app/cars")
+      .then((response) => response.json())
+      .then((data) => {
+        carContainer.innerHTML = ""; 
+        if (data.length === 0) {
+          carContainer.innerHTML = "No se encontraron autos.";
+        } else {
+          data.forEach((car) => {
+            const card = createCarCard(car);
+            carContainer.appendChild(card);
+          });
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
   
 select.addEventListener("change", function () {
   const selectedBrand = select.value;
