@@ -5,6 +5,8 @@ const select = document.getElementById("marca");
 const estado = document.getElementById("estado");
 const loader = document.querySelector("#loader");
 
+loadAllCars();
+
 function createCarCard(car) {
   const card = document.createElement("div");
   card.className = "card mb-3 mt-3";
@@ -99,6 +101,25 @@ fetch("https://ha-front-api-proyecto-final.vercel.app/brands")
     console.error(error);
   });
 
+function loadAllCars() {
+  fetch("https://ha-front-api-proyecto-final.vercel.app/cars")
+    .then((response) => response.json())
+    .then((data) => {
+      carContainer.innerHTML = "";
+      if (data.length === 0) {
+        carContainer.innerHTML = "No se encontraron autos.";
+      } else {
+        data.forEach((car) => {
+          const card = createCarCard(car);
+          carContainer.appendChild(card);
+        });
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
 select.addEventListener("change", function () {
   const selectedBrand = select.value;
 
@@ -172,41 +193,38 @@ document
       });
   });
 
-  document.addEventListener('DOMContentLoaded', function () {
-    var form = document.getElementById('my-form');
-    var submitButton = document.getElementById('submit-button');
+var form = document.getElementById("my-form");
+var submitButton = document.getElementById("submit-button");
 
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
 
-      fetch(form.action, {
-        method: 'POST',
-        body: new FormData(form),
-        headers: {
-          'Accept': 'application/json'
-        }
-      })
-        .then(function (response) {
-          return response.json();
-        })
-        .then(function (data) {
-         
-          if (data.success) {
-            alert('¡Mensaje enviado con éxito!');
-          } else {
-            alert('Hubo un error al enviar el mensaje. Inténtalo de nuevo más tarde.');
-          }
-        });
-
-      // Cierra el modal después de enviar el formulario
-      var modal = new bootstrap.Modal(document.getElementById('exampleModal'));
-      modal.hide();
+  fetch(form.action, {
+    method: "POST",
+    body: new FormData(form),
+    headers: {
+      Accept: "application/json",
+    },
+  })
+    .then(function (response) {
+      console.log(new FormData(form));
+      return response.json();
+    })
+    .then(function (data) {
+      if (data.success) {
+        alert("¡Mensaje enviado con éxito!");
+      } else {
+        alert(
+          "Hubo un error al enviar el mensaje. Inténtalo de nuevo más tarde."
+        );
+      }
     });
+  var modal = new bootstrap.Modal(document.getElementById("exampleModal"));
+  modal.hide();
+});
 
-    // Cierra el modal al hacer clic en el botón de cierre
-    var closeButton = document.querySelector('#exampleModal .btn-close');
-    closeButton.addEventListener('click', function () {
-      var modal = new bootstrap.Modal(document.getElementById('exampleModal'));
-      modal.hide();
-    });
-  });
+var closeButton = document.querySelector("#exampleModal .btn-close");
+closeButton.addEventListener("click", function () {
+  var modal = new bootstrap.Modal(document.getElementById("exampleModal"));
+  modal.hide();
+});
