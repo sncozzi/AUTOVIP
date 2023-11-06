@@ -193,38 +193,4 @@ document
       });
   });
 
-var form = document.getElementById("my-form");
-var submitButton = document.getElementById("submit-button");
 
-form.addEventListener("submit", function (e) {
-  e.preventDefault();
-
-  fetch(form.action, {
-    method: "POST",
-    body: new FormData(form),
-    headers: {
-      Accept: "application/json",
-    },
-  })
-    .then(function (response) {
-      console.log(new FormData(form));
-      return response.json();
-    })
-    .then(function (data) {
-      if (data.success) {
-        alert("¡Mensaje enviado con éxito!");
-      } else {
-        alert(
-          "Hubo un error al enviar el mensaje. Inténtalo de nuevo más tarde."
-        );
-      }
-    });
-  var modal = new bootstrap.Modal(document.getElementById("exampleModal"));
-  modal.hide();
-});
-
-var closeButton = document.querySelector("#exampleModal .btn-close");
-closeButton.addEventListener("click", function () {
-  var modal = new bootstrap.Modal(document.getElementById("exampleModal"));
-  modal.hide();
-});
