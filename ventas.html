@@ -111,55 +111,54 @@
         <div class="row">
           <div class="col-md-3 p-3">
             <div class="bg-body-secondary p-4 rounded">
-            <div class="filter-box">
-              <h3 class="mb-4">Filtro</h3>
-              <hr />
-              <form>
-                <div class="mb-3">
-                  <label for="year"><strong>Año:</strong></label>
-                  <select class="form-select" id="yearSelect">
-                    <option value="">Seleccionar</option>
-                  </select>
-                </div>
+              <div class="filter-box">
+                <h3 class="mb-4">Filtro</h3>
+                <hr />
+                <form>
+                  <div class="mb-3">
+                    <label for="year"><strong>Año:</strong></label>
+                    <select class="form-select" id="yearSelect">
+                      <option value="">Seleccionar</option>
+                    </select>
+                  </div>
 
-                <div class="mb-3">
-                  <label for="marca"><strong>Marca:</strong></label>
-                  <select class="form-select" id="marca">
-                    <option value="">Seleccionar</option>
-                  </select>
-                </div>
+                  <div class="mb-3">
+                    <label for="marca"><strong>Marca:</strong></label>
+                    <select class="form-select" id="marca">
+                      <option value="">Seleccionar</option>
+                    </select>
+                  </div>
 
-                <div class="mb-3">
-                  <label for="modelo"><strong>Modelo:</strong></label>
-                  <select class="form-select" id="modeloSelect">
-                    <option value="">Seleccionar</option>
-                  </select>
-                </div>
+                  <div class="mb-3">
+                    <label for="modelo"><strong>Modelo:</strong></label>
+                    <select class="form-select" id="modeloSelect">
+                      <option value="">Seleccionar</option>
+                    </select>
+                  </div>
 
-                <div class="mb-3">
-                  <label for="estado"><strong>Estado:</strong></label>
-                  <select class="form-select" id="estado">
-                    <option value="">Seleccionar</option>
-                    <option value="Nuevo">Nuevo</option>
-                    <option value="Usado">Usado</option>
-                  </select>
-                </div>
+                  <div class="mb-3">
+                    <label for="estado"><strong>Estado:</strong></label>
+                    <select class="form-select" id="estado">
+                      <option value="">Seleccionar</option>
+                      <option value="Nuevo">Nuevo</option>
+                      <option value="Usado">Usado</option>
+                    </select>
+                  </div>
 
-                <button
-                  type="submit"
-                  id="filterButton"
-                  class="btn w-100"
-                  style="background-color: #fb8b04; color: white"
-                >
-                  Filtrar <i class="fas fa-search"></i>
-                </button>
-                <div class="loader" id="loader"></div>
-              </form>
+                  <button
+                    type="submit"
+                    id="filterButton"
+                    class="btn w-100"
+                    style="background-color: #fb8b04; color: white"
+                  >
+                    Filtrar <i class="fas fa-search"></i>
+                  </button>
+                  <div class="loader" id="loader"></div>
+                </form>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col-md-9" id="car-container">
-        </div>
+          <div class="col-md-9" id="car-container"></div>
         </div>
       </div>
     </div>
@@ -224,77 +223,45 @@
             ></button>
           </div>
           <div class="modal-body">
-            <form>
+            <form
+              id="my-form"
+              action="https://formspree.io/f/mjvqzalp"
+              method="POST"
+            >
               <div class="mb-3">
                 <label for="recipient-name" class="col-form-label"
                   ><strong>Nombre</strong></label
                 >
-                <input type="text" class="form-control" id="recipient-name" />
+                <input
+                  type="text"
+                  class="form-control"
+                  id="recipient-name"
+                  name="nombre"
+                />
               </div>
               <div class="mb-3">
                 <label for="recipient-email" class="col-form-label"
                   ><strong>Email</strong></label
                 >
-                <input type="text" class="form-control" id="recipient-email" />
+                <input
+                  type="email"
+                  name="email"
+                  class="form-control"
+                  id="recipient-email"
+                />
               </div>
               <div class="mb-3">
                 <label for="message-text" class="col-form-label"
-                  ><strong>Mensaje</strong>
-                </label>
-                <textarea class="form-control" id="message-text"></textarea>
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-success">Enviar</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-    <div
-      class="modal fade"
-      id="exampleModal"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Contacto</h1>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <form>
-              <div class="mb-3">
-                <label for="recipient-name" class="col-form-label"
-                  ><strong>Nombre</strong></label
+                  ><strong>Mensaje</strong></label
                 >
-                <input type="text" class="form-control" id="recipient-name" />
+                <textarea
+                  name="mensaje"
+                  class="form-control"
+                  id="message-text"
+                ></textarea>
               </div>
-              <div class="mb-3">
-                <label for="recipient-email" class="col-form-label"
-                  ><strong>Email</strong></label
-                >
-                <input type="text" class="form-control" id="recipient-email" />
-              </div>
-              <div class="mb-3">
-                <label for="message-text" class="col-form-label"
-                  ><strong>Mensaje</strong>
-                </label>
-                <textarea class="form-control" id="message-text"></textarea>
-              </div>
+              <button type="submit" class="btn btn-success">Enviar</button>
             </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-success">Enviar</button>
           </div>
         </div>
       </div>

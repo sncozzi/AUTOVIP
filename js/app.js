@@ -16,26 +16,31 @@ function createCarCard(car) {
       starIcons.push('<i class="bi bi-star"></i>');
     }
   }
-  const isNewBadge = car.status === 1
-  ? '<span class="badge text-bg-danger m-2 p-2 position-absolute badge-hover">Nuevo</span>'
-  : '';
+  const isNewBadge =
+    car.status === 1
+      ? '<span class="badge text-bg-danger m-2 p-2 position-absolute badge-hover">Nuevo</span>'
+      : "";
 
-  const priceFormatted = new Intl.NumberFormat('es-ES', {
-    style: 'currency',
-    currency: 'USD',
-    minimumFractionDigits: 0
+  const priceFormatted = new Intl.NumberFormat("es-ES", {
+    style: "currency",
+    currency: "USD",
+    minimumFractionDigits: 0,
   }).format(car.price_usd);
 
   card.innerHTML = `
     <div class="row g-0">
       <div class="col-12 col-xl-5 position-relative">
         ${isNewBadge}
-        <img src="${car.image}" class="img-fluid rounded-start imgAuto" alt="" />
+        <img src="${
+          car.image
+        }" class="img-fluid rounded-start imgAuto" alt="" />
       </div>
       <div class="col-12 col-xl-7">
         <div class="card-body">
           <div class="d-flex justify-content-between">
-            <h5 class="card-title"><strong>${car.brand} ${car.model}</strong></h5>
+            <h5 class="card-title"><strong>${car.brand} ${
+    car.model
+  }</strong></h5>
             <div class="d-flex justify-content-between">
               <p class="pe-1">${car.year}</p>
               <p class="pe-1">| ${priceFormatted} |</p>
@@ -66,7 +71,6 @@ function createCarCard(car) {
   return card;
 }
 
-
 fetch("https://ha-front-api-proyecto-final.vercel.app/cars")
   .then((res) => res.json())
   .then(() => {
@@ -95,7 +99,6 @@ fetch("https://ha-front-api-proyecto-final.vercel.app/brands")
     console.error(error);
   });
 
-  
 select.addEventListener("change", function () {
   const selectedBrand = select.value;
 
@@ -104,67 +107,106 @@ select.addEventListener("change", function () {
   )
     .then((res) => res.json())
     .then(function (modelos) {
-        modeloSelect.innerHTML = "";
-        const modelosHTML = modelos
-          .map((modelo) => `<option value="${modelo}">${modelo}</option>`)
-          .join("");
-        modeloSelect.insertAdjacentHTML("beforeend", modelosHTML);
+      modeloSelect.innerHTML = "";
+      const modelosHTML = modelos
+        .map((modelo) => `<option value="${modelo}">${modelo}</option>`)
+        .join("");
+      modeloSelect.insertAdjacentHTML("beforeend", modelosHTML);
     })
     .catch((error) => {
       console.error(error);
     });
 });
 
-document.getElementById("filterButton").addEventListener("click", function (event) {
-  event.preventDefault();
-  loader.style.display = "block";
-  carContainer.innerHTML = "";
+document
+  .getElementById("filterButton")
+  .addEventListener("click", function (event) {
+    event.preventDefault();
+    loader.style.display = "block";
+    carContainer.innerHTML = "";
 
-  const selectedYear = yearSelect.value;
-  const selectedBrand = select.value;
-  const selectedModel = modeloSelect.value;
-  const selectedState = estado.value;
+    const selectedYear = yearSelect.value;
+    const selectedBrand = select.value;
+    const selectedModel = modeloSelect.value;
+    const selectedState = estado.value;
 
-  if (!selectedYear && !selectedBrand && !selectedModel && !selectedState) {
-    carContainer.innerHTML = `
+    if (!selectedYear && !selectedBrand && !selectedModel && !selectedState) {
+      carContainer.innerHTML = `
       <div class="alert alert-danger mt-3" role="alert">Debes seleccionar al menos una opción de filtro.</div>
     `;
-    loader.style.display = "none";
-    return;
-  }
-let apiUrl = "https://ha-front-api-proyecto-final.vercel.app/cars?";
-  if (selectedYear) {
-    apiUrl += `year=${selectedYear}&`;
-  }
-  if (selectedBrand) {
-    apiUrl += `brand=${selectedBrand}&`;
-  }
-  if (selectedModel) {
-    apiUrl += `model=${selectedModel}&`;
-  }
-  if (selectedState) {
-    apiUrl += `status=${selectedState === "Nuevo" ? 1 : 0}&`;
-  }
+      loader.style.display = "none";
+      return;
+    }
+    let apiUrl = "https://ha-front-api-proyecto-final.vercel.app/cars?";
+    if (selectedYear) {
+      apiUrl += `year=${selectedYear}&`;
+    }
+    if (selectedBrand) {
+      apiUrl += `brand=${selectedBrand}&`;
+    }
+    if (selectedModel) {
+      apiUrl += `model=${selectedModel}&`;
+    }
+    if (selectedState) {
+      apiUrl += `status=${selectedState === "Nuevo" ? 1 : 0}&`;
+    }
 
-  fetch(apiUrl)
-    .then((response) => response.json())
-    .then((data) => {
-      if (data.length === 0) {
-        carContainer.innerHTML = `
+    fetch(apiUrl)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.length === 0) {
+          carContainer.innerHTML = `
           <div class="alert alert-danger mt-3" role="alert">No hay resultados que coincidan con los filtros seleccionados.</div>
         `;
-      } else {
-        data.forEach((car) => {
-          const card = createCarCard(car);
-          carContainer.appendChild(card);
+        } else {
+          data.forEach((car) => {
+            const card = createCarCard(car);
+            carContainer.appendChild(card);
+          });
+        }
+        loader.style.display = "none";
+      })
+      .catch((error) => {
+        console.error(error);
+        loader.style.display = "none";
+      });
+  });
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var form = document.getElementById('my-form');
+    var submitButton = document.getElementById('submit-button');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: {
+          'Accept': 'application/json'
+        }
+      })
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (data) {
+         
+          if (data.success) {
+            alert('¡Mensaje enviado con éxito!');
+          } else {
+            alert('Hubo un error al enviar el mensaje. Inténtalo de nuevo más tarde.');
+          }
         });
-      }
-      loader.style.display = "none";
-    })
-    .catch((error) => {
-      console.error(error);
-      loader.style.display = "none";
+
+      // Cierra el modal después de enviar el formulario
+      var modal = new bootstrap.Modal(document.getElementById('exampleModal'));
+      modal.hide();
     });
-});
 
-
+    // Cierra el modal al hacer clic en el botón de cierre
+    var closeButton = document.querySelector('#exampleModal .btn-close');
+    closeButton.addEventListener('click', function () {
+      var modal = new bootstrap.Modal(document.getElementById('exampleModal'));
+      modal.hide();
+    });
+  });

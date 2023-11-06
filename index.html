@@ -85,13 +85,13 @@
                 </li>
                 <li class="nav-item text-body-secondary">
                   <button
-                  type="button"
-                  class="btn text-white pt-2 px-0"
-                  data-bs-toggle="modal"
-                  data-bs-target="#exampleModal"
-                >
-                  Contacto
-                </button>
+                    type="button"
+                    class="btn text-white pt-2 px-0"
+                    data-bs-toggle="modal"
+                    data-bs-target="#exampleModal"
+                  >
+                    Contacto
+                  </button>
                 </li>
               </ul>
             </div>
@@ -234,7 +234,8 @@
               </p>
               <a
                 href="ventas.html"
-                class="btn btn-outline-secondary float-start" style="color: black;"
+                class="btn btn-outline-secondary float-start"
+                style="color: black"
                 >Ver autos</a
               >
             </div>
@@ -343,33 +344,47 @@
               data-bs-dismiss="modal"
               aria-label="Close"
             ></button>
-      
           </div>
           <div class="modal-body">
-            <form>
+            <form
+              id="my-form"
+              action="https://formspree.io/f/mjvqzalp"
+              method="POST"
+            >
               <div class="mb-3">
                 <label for="recipient-name" class="col-form-label"
                   ><strong>Nombre</strong></label
                 >
-                <input type="text" class="form-control" id="recipient-name" />
+                <input
+                  type="text"
+                  class="form-control"
+                  id="recipient-name"
+                  name="nombre"
+                />
               </div>
               <div class="mb-3">
                 <label for="recipient-email" class="col-form-label"
                   ><strong>Email</strong></label
                 >
-                <input type="text" class="form-control" id="recipient-email" />
+                <input
+                  type="email"
+                  name="email"
+                  class="form-control"
+                  id="recipient-email"
+                />
               </div>
               <div class="mb-3">
                 <label for="message-text" class="col-form-label"
-                  ><strong>Mensaje</strong>
-                </label>
-                <textarea class="form-control" id="message-text"></textarea>
+                  ><strong>Mensaje</strong></label
+                >
+                <textarea
+                  name="mensaje"
+                  class="form-control"
+                  id="message-text"
+                ></textarea>
               </div>
+              <button type="submit" class="btn btn-success">Enviar</button>
             </form>
-          </div>
-          <div class="modal-footer">
-       
-            <button type="button" class="btn btn-success">Enviar</button>
           </div>
         </div>
       </div>
@@ -381,6 +396,5 @@
       integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
       crossorigin="anonymous"
     ></script>
-
   </body>
 </html>
