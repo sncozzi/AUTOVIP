@@ -61,7 +61,7 @@ function createCarCard(car) {
             <button type="button" class="btn btn-light" style="border: 1px solid #000">
               <i class="bi bi-plus-square"></i> Información
             </button>
-            <button type="button" class="btn btn-light mt-2 mt-sm-0" style="border: 1px solid #000">
+            <button type="button" class="btn btn-light " style="border: 1px solid #000">
               <i class="bi bi-box-arrow-up-right"></i>Compartir
             </button>
           </div>
@@ -173,24 +173,24 @@ document
     }
 
     fetch(apiUrl)
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.length === 0) {
-          carContainer.innerHTML = `
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.length === 0) {
+        carContainer.innerHTML = `
           <div class="alert alert-danger mt-3" role="alert">No hay resultados que coincidan con los filtros seleccionados.</div>
         `;
-        } else {
-          data.forEach((car) => {
-            const card = createCarCard(car);
-            carContainer.appendChild(card);
-          });
+      } else {
+        for (const car of data) {
+          const card = createCarCard(car);
+          carContainer.appendChild(card);
         }
-        loader.style.display = "none";
-      })
-      .catch((error) => {
-        console.error(error);
-        loader.style.display = "none";
-      });
+      }
+      loader.style.display = "none";
+    })
+    .catch((error) => {
+      console.error(error);
+      loader.style.display = "none";
+    });
   });
 
 
