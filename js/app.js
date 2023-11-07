@@ -101,24 +101,25 @@ fetch("https://ha-front-api-proyecto-final.vercel.app/brands")
     console.error(error);
   });
 
-function loadAllCars() {
-  fetch("https://ha-front-api-proyecto-final.vercel.app/cars")
-    .then((response) => response.json())
-    .then((data) => {
-      carContainer.innerHTML = "";
-      if (data.length === 0) {
-        carContainer.innerHTML = "No se encontraron autos.";
-      } else {
-        data.forEach((car) => {
-          const card = createCarCard(car);
-          carContainer.appendChild(card);
-        });
-      }
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-}
+  function loadAllCars() {
+    fetch("https://ha-front-api-proyecto-final.vercel.app/cars")
+      .then((response) => response.json())
+      .then((data) => {
+        carContainer.innerHTML = "";
+        if (data.length === 0) {
+          carContainer.innerHTML = "No se encontraron autos.";
+        } else {
+          for (const car of data) {
+            const card = createCarCard(car);
+            carContainer.appendChild(card);
+          }
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+
 
 select.addEventListener("change", function () {
   const selectedBrand = select.value;
