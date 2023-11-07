@@ -92,12 +92,12 @@ a {
   }
 }
 
-.badge-hover {
-  transition: transform 0.2s ease-in-out;
+.hover {
+  transition: transform 0.2s ease-out;
 }
 
-.badge-hover:hover {
-  transform: scale(1.1);
+.hover:hover {
+  transform: scale(0.9);
 }
 
 .badge {

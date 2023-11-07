@@ -20,7 +20,7 @@ function createCarCard(car) {
   }
   const NewBadge =
     car.status === 1
-      ? '<div class="badge m-2 p-2 position-absolute badge-hover">Nuevo</div>'
+      ? '<div class="badge m-2 p-2 position-absolute hover">Nuevo</div>'
       : "";
 
   const priceFormatted = new Intl.NumberFormat("es-ES", {
@@ -64,7 +64,7 @@ function createCarCard(car) {
             <button type="button" class="btn btn-light" style="border: 1px solid #000">
               <i class="bi bi-plus-square"></i> Información
             </button>
-            <button type="button" class="btn btn-light " style="border: 1px solid #000">
+            <button type="button" class="btn btn-light" style="border: 1px solid #000">
               <i class="bi bi-box-arrow-up-right"></i>Compartir
             </button>
           </div>
