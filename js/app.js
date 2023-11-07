@@ -39,18 +39,21 @@ function createCarCard(car) {
       </div>
       <div class="col-12 col-xl-7">
         <div class="card-body">
-          <div class="d-flex justify-content-between">
-            <h5 class="card-title">
-              <strong style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">${car.brand} ${car.model}</strong>
-            </h5>
-            <div class="d-flex justify-content-between">
-              <p class="pe-1">${car.year}</p>
-              <p class="pe-1">| ${priceFormatted} |</p>
-              <form>
-                <p class="clasificacion">${starIcons.join("")}</p>
-              </form>
-            </div>
-          </div>
+        <div class="d-flex justify-content-between">
+        <div style="max-width: 40%;">
+          <h5 class="card-title" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+            <strong>${car.brand} ${car.model}
+            </strong>
+          </h5>
+        </div>
+        <div class="d-flex justify-content-between">
+          <p class="pe-1">${car.year}</p>
+          <p class="pe-1">| ${priceFormatted} |</p>
+          <form>
+            <p class="clasificacion">${starIcons.join("")}</p>
+          </form>
+        </div>
+      </div>
           <p class="card-text" style="display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">${
             car.description
           }</p>
@@ -101,25 +104,24 @@ fetch("https://ha-front-api-proyecto-final.vercel.app/brands")
     console.error(error);
   });
 
-  function loadAllCars() {
-    fetch("https://ha-front-api-proyecto-final.vercel.app/cars")
-      .then((response) => response.json())
-      .then((data) => {
-        carContainer.innerHTML = "";
-        if (data.length === 0) {
-          carContainer.innerHTML = "No se encontraron autos.";
-        } else {
-          for (const car of data) {
-            const card = createCarCard(car);
-            carContainer.appendChild(card);
-          }
+function loadAllCars() {
+  fetch("https://ha-front-api-proyecto-final.vercel.app/cars")
+    .then((response) => response.json())
+    .then((data) => {
+      carContainer.innerHTML = "";
+      if (data.length === 0) {
+        carContainer.innerHTML = "No se encontraron autos.";
+      } else {
+        for (const car of data) {
+          const card = createCarCard(car);
+          carContainer.appendChild(card);
         }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }
-
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
 
 select.addEventListener("change", function () {
   const selectedBrand = select.value;
