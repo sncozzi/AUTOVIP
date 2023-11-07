@@ -173,24 +173,22 @@ document
     }
 
     fetch(apiUrl)
-    .then((response) => response.json())
-    .then((data) => {
-      if (data.length === 0) {
-        carContainer.innerHTML = `
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.length === 0) {
+          carContainer.innerHTML = `
           <div class="alert alert-danger mt-3" role="alert">No hay resultados que coincidan con los filtros seleccionados.</div>
         `;
-      } else {
-        for (const car of data) {
-          const card = createCarCard(car);
-          carContainer.appendChild(card);
+        } else {
+          for (const car of data) {
+            const card = createCarCard(car);
+            carContainer.appendChild(card);
+          }
         }
-      }
-      loader.style.display = "none";
-    })
-    .catch((error) => {
-      console.error(error);
-      loader.style.display = "none";
-    });
+        loader.style.display = "none";
+      })
+      .catch((error) => {
+        console.error(error);
+        loader.style.display = "none";
+      });
   });
-
-
