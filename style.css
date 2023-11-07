@@ -19,7 +19,7 @@ a {
 }
 
 .navbar2 {
-  border-bottom: 4px solid orange;
+  border-bottom: 4px solid #fb8b04;
 }
 
 #carousel {
@@ -34,7 +34,7 @@ a {
 
 #footer {
   margin-top: auto;
-  border-top: 4px solid orange;
+  border-top: 4px solid #fb8b04;
 }
 
 #footer-logo {
@@ -68,7 +68,7 @@ a {
 }
 
 .bi-star-fill {
-  color: orange;
+  color: #fb8b04;
 }
 .loader {
   border: 8px solid #f3f3f3;
@@ -98,4 +98,8 @@ a {
 
 .badge-hover:hover {
   transform: scale(1.1);
+}
+
+.badge {
+  background-color: #fb8b04;
 }

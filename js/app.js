@@ -18,9 +18,9 @@ function createCarCard(car) {
       starIcons.push('<i class="bi bi-star"></i>');
     }
   }
-  const isNewBadge =
+  const NewBadge =
     car.status === 1
-      ? '<span class="badge text-bg-danger m-2 p-2 position-absolute badge-hover">Nuevo</span>'
+      ? '<div class="badge m-2 p-2 position-absolute badge-hover">Nuevo</div>'
       : "";
 
   const priceFormatted = new Intl.NumberFormat("es-ES", {
@@ -32,7 +32,7 @@ function createCarCard(car) {
   card.innerHTML = `
     <div class="row g-0">
       <div class="col-12 col-xl-5 position-relative">
-        ${isNewBadge}
+        ${NewBadge}
         <img src="${
           car.image
         }" class="img-fluid rounded-start imgAuto" alt="" />
