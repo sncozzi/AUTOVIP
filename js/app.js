@@ -40,9 +40,9 @@ function createCarCard(car) {
       <div class="col-12 col-xl-7">
         <div class="card-body">
           <div class="d-flex justify-content-between">
-            <h5 class="card-title"><strong>${car.brand} ${
-    car.model
-  }</strong></h5>
+            <h5 class="card-title">
+              <strong style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">${car.brand} ${car.model}</strong>
+            </h5>
             <div class="d-flex justify-content-between">
               <p class="pe-1">${car.year}</p>
               <p class="pe-1">| ${priceFormatted} |</p>
