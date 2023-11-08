@@ -1,4 +1,4 @@
-const carContainer = document.getElementById("car-container");
+const carContainer = document.getElementById("carContainer");
 const yearSelect = document.getElementById("yearSelect");
 const modeloSelect = document.getElementById("modeloSelect");
 const select = document.getElementById("marca");
@@ -18,7 +18,7 @@ function createCarCard(car) {
       starIcons.push('<i class="bi bi-star"></i>');
     }
   }
-  const NewBadge =
+  const newBadge =
     car.status === 1
       ? '<div class="badge m-2 p-2 position-absolute hover">Nuevo</div>'
       : "";
@@ -32,7 +32,7 @@ function createCarCard(car) {
   card.innerHTML = `
     <div class="row g-0">
       <div class="col-12 col-xl-5 position-relative">
-        ${NewBadge}
+        ${newBadge}
         <img src="${
           car.image
         }" class="img-fluid rounded-start imgAuto" alt="" />
