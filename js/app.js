@@ -187,14 +187,3 @@ document
       });
   });
 
-// Obtén el modal por su ID
-document.addEventListener('DOMContentLoaded', function () {
-  var modal = document.getElementById('exampleModal');
-
-  // Agrega un oyente para el evento hidden.bs.modal
-  modal.addEventListener('hidden.bs.modal', function (event) {
-    var form = document.getElementById('my-form');
-    form.reset();
-  });
-});
-
