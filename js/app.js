@@ -23,11 +23,9 @@ function createCarCard(car) {
       ? '<div class="badge m-2 p-2 position-absolute hover">Nuevo</div>'
       : "";
 
-  const priceFormatted = new Intl.NumberFormat("es-ES", {
-    style: "currency",
-    currency: "USD",
-    minimumFractionDigits: 0,
-  }).format(car.price_usd);
+  const priceFormatted = new Intl.NumberFormat("es-ES", {}).format(
+    car.price_usd
+  );
 
   card.innerHTML = `
     <div class="row g-0">
@@ -48,7 +46,7 @@ function createCarCard(car) {
         </div>
         <div class="d-flex justify-content-between">
           <p class="pe-1">${car.year}</p>
-          <p class="pe-1">| ${priceFormatted} |</p>
+          <p class="pe-1">| U$D ${priceFormatted} |</p>
           <form>
             <p class="clasificacion">${starIcons.join("")}</p>
           </form>
@@ -76,19 +74,12 @@ function createCarCard(car) {
   return card;
 }
 
-fetch("https://ha-front-api-proyecto-final.vercel.app/cars")
-  .then((res) => res.json())
-  .then(() => {
-    for (let i = 1900; i <= 2023; i++) {
-      let option = document.createElement("option");
-      option.value = i;
-      option.textContent = i;
-      yearSelect.appendChild(option);
-    }
-  })
-  .catch((error) => {
-    console.error(error);
-  });
+for (let i = 2023; i >= 1900; i--) {
+  let option = document.createElement("option");
+  option.value = i;
+  option.textContent = i;
+  yearSelect.appendChild(option);
+}
 
 fetch("https://ha-front-api-proyecto-final.vercel.app/brands")
   .then((res) => res.json())
@@ -131,7 +122,7 @@ select.addEventListener("change", function () {
   )
     .then((res) => res.json())
     .then(function (modelos) {
-      modeloSelect.innerHTML = "";
+      modeloSelect.innerHTML = `<option value="Seleccionar">Seleccionar</option>`;
       const modelosHTML = modelos
         .map((modelo) => `<option value="${modelo}">${modelo}</option>`)
         .join("");
